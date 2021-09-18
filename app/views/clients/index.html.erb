@@ -1,10 +1,10 @@
-<p id="notice"><%= notice %></p>
+<p id="notice" class="alert alert-success alert-dismissible fade show" role="alert"><%= notice %></p>
 
 <h1>Clients</h1>
 
-<table>
-  <thead>
-    <tr>
+<table class='table table-striped table-hover table-bordered'>
+  <thead class="thead-dark">
+    <tr >
       <th>Fname</th>
       <th>Lname</th>
       <th>Mealtype</th>
@@ -26,9 +26,9 @@
         <td><%= client.phone %></td>
         <td><%= client.address %></td>
         <td><%= client.notes %></td>
-        <td><%= link_to 'Show', client %></td>
-        <td><%= link_to 'Edit', edit_client_path(client) %></td>
-        <td><%= link_to 'Destroy', client, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Show', client , class:'btn btn-primary'%></td>
+        <td><%= link_to 'Edit', edit_client_path(client), class: "btn btn-primary" %></td>
+        <td><%= link_to 'Destroy',client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -36,4 +36,5 @@
 
 <br>
 
-<%= link_to 'New Client', new_client_path %>
+
+<%= link_to 'New Client', new_client_path, class: "btn btn-success"%>

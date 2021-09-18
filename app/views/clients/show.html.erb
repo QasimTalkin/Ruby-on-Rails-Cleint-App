@@ -1,39 +1,16 @@
-<p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Fname:</strong>
-  <%= @client.fname %>
-</p>
+<div class="jumbotron">
+  <h1 class="display-4">  <%= @client.fname%>  <%= @client.lname %> </h1>
+  <p class="lead"><%= @client.mealType %></p>
+  <hr class="my-4">
+  <p><%= @client.phone %> | <%= @client.email %> | <%= @client.address %> </p>
+  <p> <%= @client.notes%></p>
 
-<p>
-  <strong>Lname:</strong>
-  <%= @client.lname %>
-</p>
 
-<p>
-  <strong>Mealtype:</strong>
-  <%= @client.mealType %>
-</p>
+  <p class="lead">
+    <%= link_to 'Edit', edit_client_path(@client),class:"btn btn-primary btn-lg" %>
+    <%= link_to 'Back', clients_path,class:"btn btn-primary btn-lg" %>
+  </p>
+</div>
 
-<p>
-  <strong>Email:</strong>
-  <%= @client.email %>
-</p>
-
-<p>
-  <strong>Phone:</strong>
-  <%= @client.phone %>
-</p>
-
-<p>
-  <strong>Address:</strong>
-  <%= @client.address %>
-</p>
-
-<p>
-  <strong>Notes:</strong>
-  <%= @client.notes %>
-</p>
-
-<%= link_to 'Edit', edit_client_path(@client) %> |
-<%= link_to 'Back', clients_path %>
+ 
