@@ -11,9 +11,9 @@
       <th>Mealtype</th>
       <th>Email</th>
       <th>Phone</th>
+
       <th>Address</th>
       <th>Notes</th>
-      <th>User ID</th>
       <th colspan="2"></th>
     </tr>
   </thead>
@@ -23,17 +23,23 @@
       <tr>
         <td><%= link_to client.fname + " " +client.lname, client %></td>
         <td><%= client.mealType %></td>
+        <% if client.user == current_user %>  
         <td><%= client.email %></td>
         <td><%= client.phone %></td>
+        <% else %>
+        <td></td>
+        <td></td>
+        <% end %>
         <td><%= client.address %></td>
         <td><%= client.notes %></td>
-        <td><%= client.user_id %></td>
         <td><%= link_to 'Destroy',client, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-outline-danger" %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 <br>
+
+
 
 
 <%= link_to 'New Client', new_client_path, class: "btn btn-success"%>
