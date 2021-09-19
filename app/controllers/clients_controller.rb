@@ -1,5 +1,8 @@
 class ClientsController < ApplicationController
+  
   before_action :set_client, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: %i[index show]
+  before_action :correct_user, only: %i[edit update destroy]
 
   # GET /clients or /clients.json
   def index
@@ -12,7 +15,8 @@ class ClientsController < ApplicationController
 
   # GET /clients/new
   def new
-    @client = Client.new
+    #@client = Client.new
+    @client = current_user.clients.build
   end
 
   # GET /clients/1/edit
@@ -21,8 +25,8 @@ class ClientsController < ApplicationController
 
   # POST /clients or /clients.json
   def create
-    @client = Client.new(client_params)
-
+    #@client = Client.new(client_params)
+    @client = current_user.clients.build(client_params)
     respond_to do |format|
       if @client.save
         format.html { redirect_to @client, notice: "Client was successfully created." }
@@ -56,6 +60,13 @@ class ClientsController < ApplicationController
     end
   end
 
+  def correct_user 
+
+    @client = current_user.clients.find_by(id: params[:id])
+    redirect_to clients_path, notice: "Not Authorized to perform this action." if @client.nil?
+    
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_client
@@ -64,6 +75,6 @@ class ClientsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def client_params
-      params.require(:client).permit(:fname, :lname, :mealType, :email, :phone, :address, :notes)
+      params.require(:client).permit(:fname, :lname, :mealType, :email, :phone, :address, :notes, :user_id)
     end
 end

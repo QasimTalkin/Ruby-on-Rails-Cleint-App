@@ -36,12 +36,17 @@
   </div>
 
   <div class="form-group field">
+    <%= form.number_field :user_id, id: :client_user_id, class:'form-control', value: current_user.id, type: :hidden%>
+  </div>
+
+  <div class="form-group field">
     <%= form.text_area :notes, class:"form-control", placeholder:"Additional Notes"   %>
   </div>
 
   <div class="actions">
-    <%= form.submit class: "btn btn-succuss" %>
+    <%= form.submit class:"btn btn-bg btn-primary"%>
   </div>
+  <br>
 
 
 <% end %>
